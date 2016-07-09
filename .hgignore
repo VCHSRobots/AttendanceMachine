@@ -1,0 +1,7 @@
+# Mercurial Ignore File for Epic Reader
+# We ignore all the data for the reader...
+
+syntax: regexp
+^gifs
+^stuff
+^logs

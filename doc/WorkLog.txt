@@ -1,0 +1,29 @@
+Worklog for Epic Attendance Reader
+
+Note: this file started after the first version of the reader was deployed.
+
+Previous Work:
+1. Got pip working so that we can install python packages.
+2. Installed pygame.  Found that it works on the console because it
+has a mode to talk directly to the framebuffer.
+
+Wednesday 1/14/14
+1. Figured out how to get the raspberry to boot up into a console window 
+and be logged into user pi.  This required understanding /etc/inittab
+2. Used raspi-config to cause the raspberry to boot into a console and
+not run XServer or GNOME.
+3. Installed "mingetty" and changed /etc/inittab as follows:
+  #1:2345:respawn:/sbin/getty --noclear 38400 tty1
+  1:2345:respawn:/sbin/mingetty --autologin pi tty1
+4. Editted .bashrc to run the file 'start' at login.
+5. Created 'start' in the home directory to run the attendance program
+if the login it on tty1 -- the main pi screen.
+6. Created 'runreader' in the ~/attendance to run the python program 
+epicreader.py.
+
+Thrusday 1/15/14
+1. Fixed up work done, and pushed it to the respository... even though
+the reader program not updated for new design.
+
+
+

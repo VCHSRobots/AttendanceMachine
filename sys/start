@@ -1,0 +1,17 @@
+#!/bin/bash
+# Startup script for Login as pi.
+#
+# In this version, we determine if we are logging into tty1
+# which is the main screen for the pi.  If so, then the attendance
+# program is started.
+#
+# Created 1/14/14, DLB.
+
+t=$(tty)
+
+if [ "$t" = "/dev/tty1" ]; then
+    cd ~/attendance
+    ~/attendance/runreader
+fi
+
+
