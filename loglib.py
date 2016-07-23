@@ -32,19 +32,29 @@ def TimeOkay() :
 # Gets current log file name.  Files change by date.
 def LogFileName() :
     t = time.localtime(time.time())
-    name = "log_%4d_%02d_%02d.csv" % (t.tm_year, t.tm_mon, t.tm_mday)
+    name = "jsonlogs/log_%4d_%02d_%02d" % (t.tm_year, t.tm_mon, t.tm_mday)
     return name
 
 # --------------------------------------------------------------------
 # Records a scan
-def RecordScan(badgeID, Side, Flags, LastName, FirstName) :
+#def RecordScan(badgeID, Side, Flags, LastName, FirstName) :
+#    filename = LogFileName()
+#    file = open(filename, "a")
+#    tm = GetLogTime();
+#  line = '= ' + tm + ', ' + badgeID + ', ' + Side + ', ' + Flags + ', ' + LastName + ', ' + FirstName + "\n"
+#   file.write(line)
+#   file.close()
+    
+# --------------------------------------------------------------------
+# Records a scan (JSON)
+def RecordScanJSON(parsed_json) :
     filename = LogFileName()
     file = open(filename, "a")
-    tm = GetLogTime();
-    line = '= ' + tm + ', ' + badgeID + ', ' + Side + ', ' + Flags + ', ' + LastName + ', ' + FirstName + "\n"
-    file.write(line)
+    tm = GetLogTime()
+    file.write(parsed_json)
     file.close()
-    
+	
+
 # ---------------------------------------------------------------------
 # Records a message
 def RecordMsg(msg) :

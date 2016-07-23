@@ -26,6 +26,7 @@ import os
 import string
 from loglib import *      # Routines to log to a file
 from userlib import *     # Routines that deal with users
+from weblib import *	  # Routines that deal with uploding scan data to webserver
 
 # ---------------------------------------------------------------------
 # Define global variables...
@@ -191,7 +192,8 @@ def ProcessInput(line) :
         nnotexist += 1
     ShowStatus()
     ShowPic(badgeid)
-    RecordScan(badgeid, side, flags, lastname, firstname)
+    #RecordScan(badgeid, side, flags, lastname, firstname)
+    AddToQue(badgeid, side, flags, lastname, firstname)
     user = (badgeid, side, "pic1.gif")
     #ShowPic(user)
     if(side == 'front') :
