@@ -36,24 +36,13 @@ def LogFileName() :
     return name
 
 # --------------------------------------------------------------------
-# Records a scan
-#def RecordScan(badgeID, Side, Flags, LastName, FirstName) :
-#    filename = LogFileName()
-#    file = open(filename, "a")
-#    tm = GetLogTime();
-#  line = '= ' + tm + ', ' + badgeID + ', ' + Side + ', ' + Flags + ', ' + LastName + ', ' + FirstName + "\n"
-#   file.write(line)
-#   file.close()
-    
-# --------------------------------------------------------------------
 # Records a scan (JSON)
 def RecordScanJSON(parsed_json) :
     filename = LogFileName()
     file = open(filename, "a")
     tm = GetLogTime()
     file.write(parsed_json)
-    file.close()
-	
+    file.close()	
 
 # ---------------------------------------------------------------------
 # Records a message

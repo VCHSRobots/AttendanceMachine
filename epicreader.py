@@ -192,7 +192,6 @@ def ProcessInput(line) :
         nnotexist += 1
     ShowStatus()
     ShowPic(badgeid)
-    #RecordScan(badgeid, side, flags, lastname, firstname)
     AddToQue(badgeid, side, flags, lastname, firstname)
     user = (badgeid, side, "pic1.gif")
     #ShowPic(user)
