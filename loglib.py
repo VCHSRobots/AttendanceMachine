@@ -32,7 +32,7 @@ def TimeOkay() :
 # Gets current log file name.  Files change by date.
 def LogFileName() :
     t = time.localtime(time.time())
-    name = "jsonlogs/log_%4d_%02d_%02d" % (t.tm_year, t.tm_mon, t.tm_mday)
+    name = "logs/log_%4d_%02d_%02d" % (t.tm_year, t.tm_mon, t.tm_mday)
     return name
 
 # --------------------------------------------------------------------

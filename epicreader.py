@@ -26,7 +26,7 @@ import os
 import string
 from loglib import *      # Routines to log to a file
 from userlib import *     # Routines that deal with users
-from weblib import *	  # Routines that deal with uploding scan data to webserver
+from weblib import *	  # Routines that deal with communication with webserver
 
 # ---------------------------------------------------------------------
 # Define global variables...
@@ -40,6 +40,10 @@ flags  = "okay" #system flags.
 cleanmode = True
 secs_to_clear = 0  #number of seconds before clearing scan data from screen
 ipaddr = "??"; 
+
+#----------------------------------------------------------------------
+
+CommunicationsManager()
 
 # ---------------------------------------------------------------------
 def GetIPAddr() :
@@ -92,7 +96,7 @@ def CharInput(event) :
 # ---------------------------------------------------------------------
 # Analyze Scan data, returns false on failure, or a tuple of 
 # (prefix, badgeid, side) prefix is whatever is found.
-# badgeid is in form A000, and side is either 'front' or 'back'.
+# badgeid is in form B000, and side is either 'front' or 'back'.
 
 def AnalyzeScan(line) :
     line = line.strip()
@@ -192,7 +196,7 @@ def ProcessInput(line) :
         nnotexist += 1
     ShowStatus()
     ShowPic(badgeid)
-    AddToQue(badgeid, side, flags, lastname, firstname)
+    PushScanToServer(badgeid, side, flags, lastname, firstname)
     user = (badgeid, side, "pic1.gif")
     #ShowPic(user)
     if(side == 'front') :
