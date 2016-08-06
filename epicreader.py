@@ -24,8 +24,10 @@ import tkFont
 import os.path
 import os
 import string
+import threading
+from thread import *
 from loglib import *      # Routines to log to a file
-from userlib import *     # Routines that deal with users
+from userlib import *     # Routines that deal with user list
 from weblib import *	  # Routines that deal with communication with webserver
 
 # ---------------------------------------------------------------------
@@ -41,9 +43,9 @@ cleanmode = True
 secs_to_clear = 0  #number of seconds before clearing scan data from screen
 ipaddr = "??"; 
 
-#----------------------------------------------------------------------
+# ---------------------------------------------------------------------
 
-CommunicationsManager()
+start_new_thread(CommMan, ())
 
 # ---------------------------------------------------------------------
 def GetIPAddr() :
@@ -218,9 +220,8 @@ def SecEvent() :
     #c.itemconfigure(tx_sec, text=str(seccounter))
     if(secs_to_clear > 0) :
         secs_to_clear -= 1
-        if(secs_to_clear == 0) : ClearScan()
-        
-    
+        if(secs_to_clear == 0) :
+            ClearScan()
         
 # ---------------------------------------------------------------------
 # Mainline code starts here...
@@ -312,6 +313,3 @@ root.mainloop()
 
 #for u in users :
 #    print(u.firstname + " " + u.lastname + " " + u.badgeid + "\n")
-
-
-
