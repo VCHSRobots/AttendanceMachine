@@ -1,8 +1,11 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
 # ---------------------------------------------------------------------
 # epicreader.py -- Main attandence reading application for Epic Robotz.
 #
 # created 1/1/15 DLB
+#
+# Compiled with Python version 2.7.9
 # ---------------------------------------------------------------------
 
 # This program was developed for Epic Robotz to take attendance 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #------------------------
 #Imports
 #------------------------
@@ -15,36 +16,65 @@ def PushScanToServer(badgeid, side, flags, lastname, firstname):
     tm = GetLogTime()
     json_string = '{"logtime": "' + tm + '", "badgeid": "' + badgeid + '", "side": "' + side + '", "flags": "' + flags + '", "lastname": "' + lastname + '", "firstname": "' + firstname +'"}'
     RecordScanJSON(json_string + "\r\n")
-    data = "SCAN:" + json_string + "^"
-    s.send(data)
+    data = "SCAN:" + json_string
+    BroadcastData(data)
     return
 def PushNewestLogToServer():
     newestlog = min(os.listdir("logs/"), key = os.path.getctime)
     with open("logs/" + newestlog, "r") as file:
-        data = "LOGN:" + file.read() + "^"
-        s.send(data)
+        data = "LOGN:" + file.read()
+        BroadcastData(data)
     return
 def PushAllLogsToServer():
     FullData = ""
     for filename in os.listdir(os.getcwd()):
         with open(filename, "r") as file:
-            data = file.read()
-            FullData += data + "%"
-    FullData = "LOGA:" + FullData + "^"
-    s.send(FullData)
+            pdata = file.read()
+            data += pdata + "%"
+    data = "LOGA:" + data
+    BroadcastData(data)
     return
 def PushUserlistToServer():
     with open("UserList.csv", "r") as file:
-        data = "USRL:" + file.read() + "^"
-        s.send(data)
+        data = "USRL:" + file.read()
+        BroadcastData(data)
+def BroadcastData(data):
+    length = len(data)
+    fdata = "<" + str(length) + ">" + data
+    s.send(fdata)
 def CommMan():
     while True:
-        recvdata = s.recv(16)
-          if recvdata[:4] == "rqln":
-            PushNewestLogToServer()
-        elif recvdata[:4] == "rqla":
-            PushAllLogsToServer()
-        elif recvdata[:4] == "rqul":
-            PushUserlistToServer()
-        elif recvdata[:4] == "tgdm":
-            print "toggling demo video.... ;)"
+        data = s.recv(16)
+        if data != "":
+            if data[0] == "<":
+                EOH = False
+                mlength = ""
+                hlength = 1
+                for char in data[1:]:
+                   if char == ">":
+                       hlength += 1
+                       break
+                   else:
+                       mlength += char
+                       hlength += 1
+                       MessageLength = int(mlength)
+                       RecvLength = 0 - hlength
+                       message = ""
+                       message += data
+                       RecvLength += len(data)
+                       if RecvLength >= MessageLength:
+                           message = message.split('>', 1)[-1]
+                           if message == "rqln":
+                               PushNewestLogToServer()
+                           elif message == "rqla":
+                               PushAllLogsToServer()
+                           elif message == "rqul":
+                               PushUserlistToServer()
+                           elif message == "tgdm":
+                               print "Toggling demo video... Note: this does not do anything at the moment."
+                       else:
+                           continue
+            else:
+                print "Major Server Error! Server not giving proper data headers! AAAAH!"
+        else:
+            print "Major Server Error! Server sending NULL data! AAAAH!"

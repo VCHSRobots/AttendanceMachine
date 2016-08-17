@@ -2,18 +2,20 @@ This document details planned additions and changes to the Attendance Machine Cl
 
 Sending of data:
 The data messages sent from the client and server to be more specific... They will need to contain special control characters, etc. Size information will be contained within a header. As of such, no EOT character is needed.
-Here is an example of possible syntaxes: (These examples use Unicode Control Characters, copies of which you may find here: https://en.wikipedia.org/wiki/C0_and_C1_control_codes)
-	File Seperator:				␜
-	Start-Of-Header:			␁
-	Start-Of-Text:				␂
-	Confirmation of receiving data:		␆
-These control characters, although cumbersome to copy-and-paste, will be used instead of "regular" characters to avoid any issues with reading data. (I suppose that data could be escaped before being sent by either the client or the server... but this is, IMO, much easier. It also seems to me to be the more "proper" way of doing things.)
+Here is an example of possible syntaxes: (These examples WILL NO LONGER use Unicode Control Characters! They will instead use "regular" characters. I'll just have to escape them. :/)
+	File Seperator:				%
+	Start-Of-Header:			<
+	Start-Of-Text:				>
+	Confirmation of receiving data:		!
 Here is a possible example of a "Conversation":
-	CLIENT -> SERVER:	␁271␂This is a sample message. Each of these are seperate "files" (or in our case, "logs") to be parsed by the Server.␜Symbols like that one let the Server know that that is a file break, and that these two blocks of text are two seperate files. Logs will work just like this.␜
-	SERVER -> CLIENT:	␆
+	CLIENT -> SERVER:	<271>This is a sample message. Each of these are seperate "files" (or in our case, "logs") to be parsed by the Server.%Symbols like that one let the Server know that that is a file break, and that these two blocks of text are two seperate files. Logs will work just like this.
+	SERVER -> CLIENT:	!
 Here's more information about that conversation: The Client sent the Server its message. It was started by the SOH symbol, which was followed by the number of bytes to expect in the text following the SOT symbol. Note that the Header text, including the SOH, and SOT symbols, are NOT counted in the total data count.
 The Server then responded to the client with an ACK symbol, to let the client know that it had indeed recieved the message.
 
 I am currently working on changing the Client and Server to work with this.
 The most of the work is on the server-side, though. It needs to go through the 8192 bit buffers one character at a time, and look for control chars. It also needs to string together the buffers into single messages, and so on and so forth...
-Hmm. I have a lot of work to do! Less writing and more typing... :)
+
+Client also needs to re-send data(s) if server does not respond within X seconds.
+Server also needs to know what to do if it does not recieve all of the message text within X seconds; X determined by Y*MessageLength. It should try to request data again, or something.
+
