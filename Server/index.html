@@ -1,0 +1,85 @@
+<!---------- CSS ----------->
+
+<style>
+        body
+        {
+                background-color: black;
+        }
+        h1
+        {
+                font-family: monospace;
+                text-align: center;
+                color: red;
+                text-shadow: 50px 50px 5px #f00000;
+        }
+        p1
+        {
+                font-family: monospace;
+                color: gray;
+        }
+        p2
+        {
+                font-family: monospace;
+                color: white;
+        }
+        p3
+        {
+                font-family: monospace;
+                color: green;
+        }
+</style>
+
+<!----------- HTML -------------->
+
+<head>
+    <title>Scanner Logs</title>
+    <meta http-equiv="refresh" content="2" />
+</head>
+<body>
+<h1>
+/-----------------------\<br>
+| LIVE SCANNER LOG FEED |<br>
+\-----------------------/<br>
+</h1>
+<p1>
+This page should refresh every /2/ seconds with live log data.<br>
+To reduce clutter, log data will be removed from here every /8/ minutes.<br>
+<br>
+If you would like to use any of the "special" commands, grab a socket testing software of your choice (I recommend using "https://sourceforge.net/projects/sockettest/"), and send your message to:<br>
+[Address: "epicarg.xyz" Port: "3265"]<br>
+Only /3/ clients may connect properly at one time. That number is arbatrary.<br>
+<br>
+/!\ Please note that these commands (and this entire page!) are just a temporary feature, because I don't really know how to interact with this server's communications manager script from a html webpage...<br>
+In any case, your message will be sent to the comm script, which will then send them to the scanner as a reply. In the future, this will be handeled differently; the comm script will be given messages to send to the scanner directly from the client clicking buttons on the html page. (Or something along those lines.)<br>
+<br>
+Also, not all of these commands, at the time of this writing, are functional. I'll mark functional commands with a "*" prefix as I update the scanner's software and push it to GitHub.<br>
+Here is the list of special commands which you can send to test out requesting (and sending) special data to the scanner:<br>
+Please note the addition of the headers to each of these commands. This is so we don't have to add in a special instance for each "command".<br>
+</p1>
+<br>
+<p2>
+* <4>rqln - Request a copy of the newest log<br>
+* <4>rqla - Request copies of all avaliable logs<br>
+* <4>rqul - Request a copy of the scanner's userlist<br>
+X <4>psul - Send the scanner a copy of the webserver's userlist<br>
+* <4>tgdm - Toggle the scanner's demo video<br>
+</p2>
+<br>
+<p3>
+-------------------------------------------------------------------<br>
+LOG STARTS HERE:<br>
+-------------------------------------------------------------------<br>
+[INFO] Attendance Server initiated on port 3265 at : 2016/08/18-21:23:47<br>[INFO] Client (108.38.32.249, 50775) has connected at : 2016/08/18-21:23:47<br>[INFO] ///Pull UserList from Scanner to Server/// message recieved from client (108.38.32.249, 50775) at : 2016/08/18-21:24:09 : rqul
+<br>[WARN] ///Bad parse - No Start-Of-Header symbol/// message recieved from client (108.38.32.249, 50775) at : 2016/08/18-21:24:16 : hmmng
+<br>[INFO] ///Pull UserList from Scanner to Server/// message recieved from client (108.38.32.249, 50775) at : 2016/08/18-21:24:16 : rqul
+hmmng
+<br>[WARN] ///Bad parse - No Start-Of-Header symbol/// message recieved from client (108.38.32.249, 50775) at : 2016/08/18-21:24:26 : welp server is dead.
+<br>[INFO] ///Pull UserList from Scanner to Server/// message recieved from client (108.38.32.249, 50775) at : 2016/08/18-21:24:26 : rqul
+hmmng
+welp server is dead.
+<br>[WARN] ///Bad parse - No Start-Of-Header symbol/// message recieved from client (108.38.32.249, 50775) at : 2016/08/18-21:24:44 : sigh
+<br>[INFO] ///Pull UserList from Scanner to Server/// message recieved from client (108.38.32.249, 50775) at : 2016/08/18-21:24:44 : rqul
+hmmng
+welp server is dead.
+sigh
+<br>[WARN] Client (108.38.32.249, 50775) has disconnected at : 2016/08/18-21:24:50 : Due to exception in data processing code : [Errno 104] Connection reset by peer<br>

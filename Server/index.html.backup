@@ -1,0 +1,73 @@
+<!---------- CSS ----------->
+
+<style>
+        body
+        {
+                background-color: black;
+        }
+        h1
+        {
+                font-family: monospace;
+                text-align: center;
+                color: red;
+                text-shadow: 50px 50px 5px #f00000;
+        }
+        p1
+        {
+                font-family: monospace;
+                color: gray;
+        }
+        p2
+        {
+                font-family: monospace;
+                color: white;
+        }
+        p3
+        {
+                font-family: monospace;
+                color: green;
+        }
+</style>
+
+<!----------- HTML -------------->
+
+<head>
+    <title>Scanner Logs</title>
+    <meta http-equiv="refresh" content="2" />
+</head>
+<body>
+<h1>
+/-----------------------\<br>
+| LIVE SCANNER LOG FEED |<br>
+\-----------------------/<br>
+</h1>
+<p1>
+This page should refresh every /2/ seconds with live log data.<br>
+To reduce clutter, log data will be removed from here every /8/ minutes.<br>
+<br>
+If you would like to use any of the "special" commands, grab a socket testing software of your choice (I recommend using "https://sourceforge.net/projects/sockettest/"), and send your message to:<br>
+[Address: "epicarg.xyz" Port: "3265"]<br>
+Only /3/ clients may connect properly at one time. That number is arbatrary.<br>
+<br>
+/!\ Please note that these commands (and this entire page!) are just a temporary feature, because I don't really know how to interact with this server's communications manager script from a html webpage...<br>
+In any case, your message will be sent to the comm script, which will then send them to the scanner as a reply. In the future, this will be handeled differently; the comm script will be given messages to send to the scanner directly from the client clicking buttons on the html page. (Or something along those lines.)<br>
+I will use "%" as the notation for End Of File in transmissions, and "^" will be used as the notation for End Of Transmission.<br>
+"1" will be used to confirm the receiving of a message by the server to the client(s).<br>
+<br>
+Also, not all of these commands, at the time of this writing, are functional. I'll mark functional commands with a "*" prefix as I update the scanner's software and push it to GitHub.<br>
+Here is the list of special commands which you can send to test out requesting (and sending) special data to the scanner:<br>
+</p1>
+<br>
+<p2>
+X rqln - Request a copy of the newest log<br>
+X rqla - Request copies of all avaliable logs<br>
+* rqul - Request a copy of the scanner's userlist<br>
+X psul - Send the scanner a copy of the webserver's userlist<br>
+X tgdm - Toggle the scanner's demo video<br>
+</p2>
+<br>
+<p3>
+-------------------------------------------------------------------<br>
+LOG STARTS HERE:<br>
+-------------------------------------------------------------------<br>
+
