@@ -1,21 +1,37 @@
-This document details planned additions and changes to the Attendance Machine Client and Server.
+To Do:
+This is a non-exhaustive list of what-to-do for the attendance system.
+Completed objectives will be marked with a "X".
+Please add to this file if you feel the need to do so.
 
-Sending of data:
-The data messages sent from the client and server to be more specific... They will need to contain special control characters, etc. Size information will be contained within a header. As of such, no EOT character is needed.
-Here is an example of possible syntaxes: (These examples WILL NO LONGER use Unicode Control Characters! They will instead use "regular" characters. I'll just have to escape them. :/)
-	File Seperator:				%
-	Start-Of-Header:			<
-	Start-Of-Text:				>
-	Confirmation of receiving data:		!
-Here is a possible example of a "Conversation":
-	CLIENT -> SERVER:	<271>This is a sample message. Each of these are seperate "files" (or in our case, "logs") to be parsed by the Server.%Symbols like that one let the Server know that that is a file break, and that these two blocks of text are two seperate files. Logs will work just like this.
-	SERVER -> CLIENT:	!
-Here's more information about that conversation: The Client sent the Server its message. It was started by the SOH symbol, which was followed by the number of bytes to expect in the text following the SOT symbol. Note that the Header text, including the SOH, and SOT symbols, are NOT counted in the total data count.
-The Server then responded to the client with an ACK symbol, to let the client know that it had indeed recieved the message.
+CLIENT:
 
-I am currently working on changing the Client and Server to work with this.
-The most of the work is on the server-side, though. It needs to go through the 8192 bit buffers one character at a time, and look for control chars. It also needs to string together the buffers into single messages, and so on and so forth...
+[ ] - Improove general exception handling
+[ ] - Allow client to run without server connection
+[ ] - Put un-sent messages into a que
+[ ] - Attempt to send que to server every /30/ seconds untill an ACK signal ("!") is recieved
+[ ] - Correct and test timeout for receiving data
+[ ] - Upload an up-to-date userlist and student photos
+[ ] - Add a short demonstration video
+[ ] - Add seperate logs and log folder for program output, seperate from scan logging
 
-Client also needs to re-send data(s) if server does not respond within X seconds.
-Server also needs to know what to do if it does not recieve all of the message text within X seconds; X determined by Y*MessageLength. It should try to request data again, or something.
+SERVER:
 
+[ ] - Improove exception handling
+[ ] - Allow interfacing between front-end page and back-end server script
+[ ] - Change attendance data processing: JSON format, Hours / Total, Days / Total
+[ ] - Allow for easy changing of processing variables with a front-end UI: Meeting dates and times
+[ ] - Allow for easy changing of the UserList with a front-end UI
+[ ] - Allow for managing multiple scanner clients: Commands, pulling, pushing, diagnostics (uptime, packets dropped), etcetera. Give each scanner a UUID, perhaps?
+[ ] - Correct issues with reading header data
+[ ] - Correct issues with stringing together multiple packets into a single message
+[ ] - Correct and test timeout for receiving data
+[ ] - Add seperate logs and log folder for program output, seperate from scan logging
+[ ] - Move server and other administrative tools to a sub-domain of epicrobotz.com; "admin.epicrobotz.com"?
+
+UN-NESSICARY CHANGES:
+
+[ ] - Update code base from Python 2.7.x to Python 3.5.x
+[ ] - Upon program completion, ensure code is PEP-8 compliant
+[ ] - EZ-install package for both client and server - if there is ever a need to migrate to a fresh machine; include all dependances in (tar bin?) install package, including Python
+[ ] - Release code as Open-Source freeware (see above)
+[ ] - Re-format Pi's SD card on a bad scan (Just kidding.)

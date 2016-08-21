@@ -20,15 +20,17 @@ def PushScanToServer(badgeid, side, flags, lastname, firstname):
     BroadcastData(data)
     return
 def PushNewestLogToServer():
-    newestlog = min(os.listdir("logs/"), key = os.path.getctime)
-    with open("logs/" + newestlog, "r") as file:
+    newestlog = max(glob.iglob(os.path.join("logs/", "*")), key=os.path.getctime)
+    with open(newestlog, "r") as file:
         data = "LOGN:" + file.read()
         BroadcastData(data)
     return
 def PushAllLogsToServer():
+    data = ""
     FullData = ""
-    for filename in os.listdir(os.getcwd()):
-        with open(filename, "r") as file:
+    FileList = os.listdir("logs/")
+    for filename in FileList:
+        with open("logs/" + filename, "r") as file:
             pdata = file.read()
             data += pdata + "%"
     data = "LOGA:" + data
@@ -75,6 +77,6 @@ def CommMan():
                        else:
                            continue
             else:
-                print "Major Server Error! Server not giving proper data headers! AAAAH!"
+                print "[WARN] Major Server Error! Server not giving proper data headers!"
         else:
-            print "Major Server Error! Server sending NULL data! AAAAH!"
+            print "[WARN] Server appears to have gone offline!"
