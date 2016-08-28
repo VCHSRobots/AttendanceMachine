@@ -61,11 +61,12 @@ Please note the addition of the headers to each of these commands. This is so we
 </p1>
 <br>
 <p2>
-* <4>rqln - Request a copy of the newest log<br>
-* <4>rqla - Request copies of all avaliable logs<br>
-* <4>rqul - Request a copy of the scanner's userlist<br>
+* <4>rqln - Request a copy of the newest scan log<br>
+* <4>rqla - Request copies of all avaliable scan logs<br>
+X <4>rqlo - Request a copy of the client's outlog<br>
+* <4>rqul - Request a copy of the client's userlist<br>
 X <4>psul - Send the scanner a copy of the webserver's userlist<br>
-* <4>tgdm - Toggle the scanner's demo video<br>
+* <4>tgdm - Toggle the client's demo video feature<br>
 </p2>
 <br>
 <p3>
@@ -114,9 +115,9 @@ if __name__ == "__main__":
     EOH = False
     timeout = False
     def DataTimeout():
+        timeout = False
         threading.Timer(6, DataTimeout).start()
         timeout = True
-    DataTimeout()
     while True: 
         CurrentTime = time.strftime("%Y/%m/%d-%H:%M:%S")
         read_sockets, write_sockets, error_sockets = select.select(CONNECTION_LIST,[],[])
@@ -143,6 +144,7 @@ if __name__ == "__main__":
                                     else:
                                         hlength += 1
                                         RecvLength = 0 - hlength
+                                        print str(mlength)
                                         MessageLength = int(mlength)
                                         EOH = True
                             else:
@@ -165,6 +167,10 @@ if __name__ == "__main__":
                                     log("[INFO] ///User List/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
                                     broadcast_data(sock, "!")
                                 #Following are the temporary commands used to communicate with clients. These will be replaced in the actual release of the client/server for the Attendance system.
+                                elif message[:4] == "rqlo":
+                                    #Send request to client(s) for outlog file
+                                    log("[INFO] ///Pull OutLog from Scanner to Server/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
+                                    broadcast_data(sock, "rqlo")
                                 elif message[:4] == "rqln":
                                     #Send request to client(s) for newest log
                                     log("[INFO] ///Pull Newest Log from Scanner to Server/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
