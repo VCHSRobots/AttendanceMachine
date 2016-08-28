@@ -6,13 +6,13 @@ Please add to this file if you feel the need to do so.
 CLIENT:
 
 [ ] - Improove general exception handling
-[ ] - Allow client to run without server connection
-[ ] - Put un-sent messages into a que
-[ ] - Attempt to send que to server every /30/ seconds untill an ACK signal ("!") is recieved
+[X] - Allow client to run without server connection
+[X] - Put un-sent messages into a que
+[ ] - Attempt to send que to server every /30/ seconds until an ACK signal ("!") is recieved
 [ ] - Correct and test timeout for receiving data
 [ ] - Upload an up-to-date userlist and student photos
 [ ] - Add a short demonstration video
-[ ] - Add seperate logs and log folder for program output, seperate from scan logging
+[X] - Add seperate logs and log folder for program output, seperate from scan logging
 
 SERVER:
 
@@ -25,7 +25,6 @@ SERVER:
 [ ] - Correct issues with reading header data
 [ ] - Correct issues with stringing together multiple packets into a single message
 [ ] - Correct and test timeout for receiving data
-[ ] - Add seperate logs and log folder for program output, seperate from scan logging
 [ ] - Move server and other administrative tools to a sub-domain of epicrobotz.com; "admin.epicrobotz.com"?
 
 UN-NESSICARY CHANGES:

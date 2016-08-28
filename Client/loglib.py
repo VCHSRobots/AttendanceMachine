@@ -32,7 +32,7 @@ def TimeOkay() :
 # Gets current log file name.  Files change by date.
 def LogFileName() :
     t = time.localtime(time.time())
-    name = "logs/log_%4d_%02d_%02d" % (t.tm_year, t.tm_mon, t.tm_mday)
+    name = "scanlogs/log_%4d_%02d_%02d" % (t.tm_year, t.tm_mon, t.tm_mday)
     return name
 
 # --------------------------------------------------------------------
@@ -47,9 +47,10 @@ def RecordScanJSON(parsed_json) :
 # ---------------------------------------------------------------------
 # Records a message
 def RecordMsg(msg) :
-    filename = LogFileName()
+    print msg
+    filename = "outlog"
     file = open(filename, "a")
     tm = GetLogTime();
-    line = '* ' + tm + '> ' + msg + "\n"
+    line = '[' + tm + '] ' + msg + "\n"
     file.write(line)
     file.close()

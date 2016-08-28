@@ -2,13 +2,14 @@
 #------------------------
 #Imports
 #------------------------
-import json, threading, socket, glob, thread
+import json, threading, socket, glob, thread, time
 from loglib import *
 #------------------------
 #Global Variables
 #------------------------
+ConnToServer = False
+que = []
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect(("epicarg.xyz", 3265))
 #------------------------
 #Functions
 #------------------------
@@ -41,11 +42,41 @@ def PushUserlistToServer():
         data = "USRL:" + file.read()
         BroadcastData(data)
 def BroadcastData(data):
+    global ConnToServer
     length = len(data)
     fdata = "<" + str(length) + ">" + data
-    s.send(fdata)
+    if ConnToServer == True:
+        s.send(fdata)
+    else:
+        AddToQue(fdata)
+def AddToQue(data):
+    global que
+    que.append(data)
+def ConnectToServer():
+    global ConnToServer
+    global que
+    global s
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        s.connect(("epicarg.xyz", 3265))
+        ConnToServer = True
+        RecordMsg("[INFO] Connected to remote server.")
+        if que != []:
+            qdata = ' '.join(que)
+            s.send(qdata)
+            RecordMsg("[INFO] Backlog scan que sent to server : " + qdata  + " : " + str(len(qdata)) + " bits.")
+            que = []
+    except Exception as e:
+        RecordMsg("[FATL] Unable to connect to server : " + str(e))
+        ConnToServer = False
+        RecordMsg("[INFO] Attempting to reconnect to the server in 10 seconds...")
+        time.sleep(10)
+        ConnectToServer()
 def CommMan():
-    while True:
+    global ConnToServer
+    global s
+    ConnectToServer()
+    while ConnToServer == True:
         data = s.recv(16)
         if data != "":
             if data[0] == "<":
@@ -73,10 +104,12 @@ def CommMan():
                            elif message == "rqul":
                                PushUserlistToServer()
                            elif message == "tgdm":
-                               print "Toggling demo video... Note: this does not do anything at the moment."
+                               RecordMsg("[INFO] Toggling demo video... Note: This does NOT do anything at the moment.")
                        else:
                            continue
             else:
-                print "[WARN] Major Server Error! Server not giving proper data headers!"
+                RecordMsg("[WARN] Server not giving proper data headers.")
         else:
-            print "[WARN] Server appears to have gone offline!"
+            RecordMsg("[FATL] Server appears to have gone offline.")
+            ConnToServer = False
+    ConnectToServer()
