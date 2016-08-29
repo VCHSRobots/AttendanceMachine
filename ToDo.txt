@@ -5,25 +5,25 @@ Please add to this file if you feel the need to do so.
 
 CLIENT:
 
-[ ] - Improove general exception handling
+[X] - Improove general exception handling
 [X] - Allow client to run without server connection
 [X] - Put un-sent messages into a que
-[ ] - Attempt to send que to server every /30/ seconds until an ACK signal ("!") is recieved
-[ ] - Correct and test timeout for receiving data
+[X] - Attempt to send reconnect to server every /60/ seconds 
+[X] - Send que to server on connection
 [ ] - Upload an up-to-date userlist and student photos
 [ ] - Add a short demonstration video
 [X] - Add seperate logs and log folder for program output, seperate from scan logging
 
 SERVER:
 
-[ ] - Improove exception handling
+[X] - Improove exception handling
 [ ] - Allow interfacing between front-end page and back-end server script
 [ ] - Change attendance data processing: JSON format, Hours / Total, Days / Total
 [ ] - Allow for easy changing of processing variables with a front-end UI: Meeting dates and times
 [ ] - Allow for easy changing of the UserList with a front-end UI
 [ ] - Allow for managing multiple scanner clients: Commands, pulling, pushing, diagnostics (uptime, packets dropped), etcetera. Give each scanner a UUID, perhaps?
-[ ] - Correct issues with reading header data
-[ ] - Correct issues with stringing together multiple packets into a single message
+[X] - Correct issues with reading header data
+[X] - Correct issues with stringing together multiple packets into a single message
 [ ] - Correct and test timeout for receiving data
 [ ] - Move server and other administrative tools to a sub-domain of epicrobotz.com; "admin.epicrobotz.com"?
 

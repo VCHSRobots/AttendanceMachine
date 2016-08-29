@@ -2,7 +2,7 @@
 #------------------------
 #Imports
 #------------------------
-import json, threading, socket, glob, thread, time
+import json, threading, socket, glob, thread, time, sys
 from loglib import *
 #------------------------
 #Global Variables
@@ -21,7 +21,7 @@ def PushScanToServer(badgeid, side, flags, lastname, firstname):
     BroadcastData(data)
     return
 def PushNewestLogToServer():
-    newestlog = max(glob.iglob(os.path.join("logs/", "*")), key=os.path.getctime)
+    newestlog = max(glob.iglob(os.path.join("scanlogs/", "*")), key=os.path.getctime)
     with open(newestlog, "r") as file:
         data = "LOGN:" + file.read()
         BroadcastData(data)
@@ -29,9 +29,9 @@ def PushNewestLogToServer():
 def PushAllLogsToServer():
     data = ""
     FullData = ""
-    FileList = os.listdir("logs/")
+    FileList = os.listdir("scanlogs/")
     for filename in FileList:
-        with open("logs/" + filename, "r") as file:
+        with open("scanlogs/" + filename, "r") as file:
             pdata = file.read()
             data += pdata + "%"
     data = "LOGA:" + data
@@ -40,6 +40,10 @@ def PushAllLogsToServer():
 def PushUserlistToServer():
     with open("UserList.csv", "r") as file:
         data = "USRL:" + file.read()
+        BroadcastData(data)
+def PushOutlogToServer():
+    with open("outlog", "r") as file:
+        data = "LOGO:" + file.read()
         BroadcastData(data)
 def BroadcastData(data):
     global ConnToServer
@@ -62,9 +66,17 @@ def ConnectToServer():
         ConnToServer = True
         RecordMsg("[INFO] Connected to remote server.")
         if que != []:
-            qdata = ' '.join(que)
-            s.send(qdata)
-            RecordMsg("[INFO] Backlog scan que sent to server : " + qdata  + " : " + str(len(qdata)) + " bits.")
+            i = 0
+            time.sleep(1)
+            for scan in que:
+                s.send(scan)
+                i += 1
+                sys.stdout.write("\r[INFO] %d" % i + " of " + str(len(que)) + " backlog scans sent to server")
+                sys.stdout.flush()
+                time.sleep(0.25)
+            sys.stdout.write("\r")
+            sys.stdout.flush()
+            RecordMsg("[INFO] All backlog scans sent to server : " + str(len(que)) + " items; " + str(len("".join(que))) + " bits")
             que = []
     except Exception as e:
         RecordMsg("[FATL] Unable to connect to server : " + str(e))
@@ -101,6 +113,8 @@ def CommMan():
                                PushNewestLogToServer()
                            elif message == "rqla":
                                PushAllLogsToServer()
+                           elif message == "rqlo":
+                               PushOutlogToServer()
                            elif message == "rqul":
                                PushUserlistToServer()
                            elif message == "tgdm":

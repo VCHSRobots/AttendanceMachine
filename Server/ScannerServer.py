@@ -63,7 +63,7 @@ Please note the addition of the headers to each of these commands. This is so we
 <p2>
 * <4>rqln - Request a copy of the newest scan log<br>
 * <4>rqla - Request copies of all avaliable scan logs<br>
-X <4>rqlo - Request a copy of the client's outlog<br>
+* <4>rqlo - Request a copy of the client's outlog<br>
 * <4>rqul - Request a copy of the client's userlist<br>
 X <4>psul - Send the scanner a copy of the webserver's userlist<br>
 * <4>tgdm - Toggle the client's demo video feature<br>
@@ -84,7 +84,7 @@ ClearPage()
 ####################
 if __name__ == "__main__":
     CONNECTION_LIST = []
-    RECV_BUFFER = 8192
+    RECV_BUFFER = 64
     PORT = 3265
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -114,10 +114,14 @@ if __name__ == "__main__":
     message = ""
     EOH = False
     timeout = False
+    RecvLength = 0
+    MessageLength = 0
     def DataTimeout():
         timeout = False
-        threading.Timer(6, DataTimeout).start()
-        timeout = True
+        #log("Timeout: Timer Started!")
+        #time.sleep(6)
+        #timeout = True
+        #log("Timeout: Time's Up!")
     while True: 
         CurrentTime = time.strftime("%Y/%m/%d-%H:%M:%S")
         read_sockets, write_sockets, error_sockets = select.select(CONNECTION_LIST,[],[])
@@ -127,12 +131,11 @@ if __name__ == "__main__":
                 CONNECTION_LIST.append(sockfd)
                 log("[INFO] Client (%s, %s) has connected" % addr + " at : " + CurrentTime  + "<br>")
             else:
-                RecvLength = 0
-                MessageLength = 0
                 try:
                     data = sock.recv(RECV_BUFFER)
                     if data != "":
-                        DataTimeout()
+                        TimeoutThread = threading.Thread(target = DataTimeout)
+                        TimeoutThread.start()
                         if EOH == False:
                             if data[0] == "<":
                                 mlength = ""
@@ -143,25 +146,29 @@ if __name__ == "__main__":
                                         hlength += 1
                                     else:
                                         hlength += 1
-                                        RecvLength = 0 - hlength
-                                        print str(mlength)
-                                        MessageLength = int(mlength)
+                                        MessageLength = int(mlength) + hlength
                                         EOH = True
                             else:
                                 log("[WARN] ///Bad parse - No Start-Of-Header symbol/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + data + "<br>")
                         message += data
                         RecvLength += len(data)
                         if timeout == False:
-                            if RecvLength >= MessageLength:
+                            if RecvLength == MessageLength:
                                 message = message.split('>', 1)[-1]
+                                RecvLength = 0
+                                MessageLength = 0
+                                EOH = False
                                 if message[:5] == "SCAN:":
                                     log("[INFO] ///Scan/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
                                     broadcast_data(sock, "!")
                                 elif message[:5] == "LOGN:":
-                                    log("[INFO] ///Newest Log/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
+                                    log("[INFO] ///Newest Scan Log/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
                                     broadcast_data(sock, "!")
                                 elif message[:5] == "LOGA:":
-                                    log("[INFO] ///All Logs/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
+                                    log("[INFO] ///All Scan Logs/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
+                                    broadcast_data(sock, "!")
+                                elif message[:5] == "LOGO:":
+                                    log("[INFO] ///Out Log/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
                                     broadcast_data(sock, "!")
                                 elif message[:5] == "USRL:":
                                     log("[INFO] ///User List/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
@@ -173,11 +180,11 @@ if __name__ == "__main__":
                                     broadcast_data(sock, "rqlo")
                                 elif message[:4] == "rqln":
                                     #Send request to client(s) for newest log
-                                    log("[INFO] ///Pull Newest Log from Scanner to Server/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
+                                    log("[INFO] ///Pull Newest Scan Log from Scanner to Server/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
                                     broadcast_data(sock, "rqln")
                                 elif message[:4] == "rqla":
                                     #Send request to client(s) for all logs
-                                    log("[INFO] ///Pull All Logs from Scanner to Server/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
+                                    log("[INFO] ///Pull All Scan Logs from Scanner to Server/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
                                     broadcast_data(sock, "rqla")
                                 elif message[:4] == "rqul":
                                     #Send request to client(s) for UserList
@@ -192,9 +199,6 @@ if __name__ == "__main__":
                                     broadcast_data(sock, "tgdm")
                                 else:
                                     log("[WARN] ///Bad parse - General error parsing data/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
-                                RecvLength = 0
-                                MessageLength = 0
-                                EOH = False
                         else:
                             log("[WARN] Client (%s, %s) failed to complete sending a " + str(MessageLength) + " bit message within the timeout time of 6 seconds " % addr + " at : " + CurrentTime + "<br>") 
                     else:
@@ -203,8 +207,8 @@ if __name__ == "__main__":
                         CONNECTION_LIST.remove(sock)
                         continue
                 except Exception as e:
-                    log("[WARN] Client (%s, %s) has disconnected" % addr + " at : " + CurrentTime + " : Due to exception in data processing code : " + str(e) + "<br>")
-                    sock.close()
-                    CONNECTION_LIST.remove(sock)
+                    log("[WARN] Client (%s, %s) has encountered an error" % addr + " at : " + CurrentTime + " : Due to exception in data processing code : " + str(e) + "<br>")
+                    #sock.close()
+                    #CONNECTION_LIST.remove(sock)
                     continue
     server_socket.close()
