@@ -36,17 +36,28 @@ text = """<!---------- CSS ----------->
 
 <head>
     <title>Scanner Logs</title>
-    <meta http-equiv="refresh" content="2" />
 </head>
-<body>
+<body> 
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      document.getElementById("Log").innerHTML = xhttp.responseText;
+    }
+  };
+  xhttp.open("POST", "outlog.txt", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send();
+}
+</script>
 <h1>
 /-----------------------\<br>
 | LIVE SCANNER LOG FEED |<br>
 \-----------------------/<br>
 </h1>
 <p1>
-This page should refresh every /2/ seconds with live log data.<br>
-To reduce clutter, log data will be removed from here every /8/ minutes.<br>
+To update this page's information, please click the button below.
 <br>
 If you would like to use any of the "special" commands, grab a socket testing software of your choice (I recommend using "https://sourceforge.net/projects/sockettest/"), and send your message to:<br>
 [Address: "epicarg.xyz" Port: "3265"]<br>
@@ -73,12 +84,14 @@ X <4>psul - Send the scanner a copy of the webserver's userlist<br>
 -------------------------------------------------------------------<br>
 LOG STARTS HERE:<br>
 -------------------------------------------------------------------<br>
+<button type="button" onclick="loadDoc()">[Request current log data]</button>
+<p id="Log"></p>
 """
-def ClearPage():
-    threading.Timer(480, ClearPage).start()
+def ClearOutlog():
+    threading.Timer(480, ClearOutlog).start()
     with open("index.html", "w") as file:
         file.write(text)
-ClearPage()
+ClearOutlog()
 ####################
 # Main Server Code #
 ####################
@@ -108,7 +121,7 @@ if __name__ == "__main__":
                     CONNECTION_LIST.remove(socket)
     def log(msg):
         print(msg)
-        with open("index.html", "a") as file:
+        with open("outlog.txt", "a") as file:
             file.write(msg)
     log("[INFO] Attendance Server initiated on port " + str(PORT) + " at : " + time.strftime("%Y/%m/%d-%H:%M:%S") + "<br>")
     message = ""

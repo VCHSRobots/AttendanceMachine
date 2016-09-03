@@ -33,17 +33,28 @@
 
 <head>
     <title>Scanner Logs</title>
-    <meta http-equiv="refresh" content="2" />
 </head>
-<body>
+<body> 
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      document.getElementById("Log").innerHTML = xhttp.responseText;
+    }
+  };
+  xhttp.open("POST", "outlog.txt", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send();
+}
+</script>
 <h1>
 /-----------------------\<br>
 | LIVE SCANNER LOG FEED |<br>
 \-----------------------/<br>
 </h1>
 <p1>
-This page should refresh every /2/ seconds with live log data.<br>
-To reduce clutter, log data will be removed from here every /8/ minutes.<br>
+To update this page's information, please click the button below.
 <br>
 If you would like to use any of the "special" commands, grab a socket testing software of your choice (I recommend using "https://sourceforge.net/projects/sockettest/"), and send your message to:<br>
 [Address: "epicarg.xyz" Port: "3265"]<br>
@@ -58,28 +69,17 @@ Please note the addition of the headers to each of these commands. This is so we
 </p1>
 <br>
 <p2>
-* <4>rqln - Request a copy of the newest log<br>
-* <4>rqla - Request copies of all avaliable logs<br>
-* <4>rqul - Request a copy of the scanner's userlist<br>
+* <4>rqln - Request a copy of the newest scan log<br>
+* <4>rqla - Request copies of all avaliable scan logs<br>
+* <4>rqlo - Request a copy of the client's outlog<br>
+* <4>rqul - Request a copy of the client's userlist<br>
 X <4>psul - Send the scanner a copy of the webserver's userlist<br>
-* <4>tgdm - Toggle the scanner's demo video<br>
+* <4>tgdm - Toggle the client's demo video feature<br>
 </p2>
 <br>
 <p3>
 -------------------------------------------------------------------<br>
 LOG STARTS HERE:<br>
 -------------------------------------------------------------------<br>
-[INFO] Attendance Server initiated on port 3265 at : 2016/08/18-21:23:47<br>[INFO] Client (108.38.32.249, 50775) has connected at : 2016/08/18-21:23:47<br>[INFO] ///Pull UserList from Scanner to Server/// message recieved from client (108.38.32.249, 50775) at : 2016/08/18-21:24:09 : rqul
-<br>[WARN] ///Bad parse - No Start-Of-Header symbol/// message recieved from client (108.38.32.249, 50775) at : 2016/08/18-21:24:16 : hmmng
-<br>[INFO] ///Pull UserList from Scanner to Server/// message recieved from client (108.38.32.249, 50775) at : 2016/08/18-21:24:16 : rqul
-hmmng
-<br>[WARN] ///Bad parse - No Start-Of-Header symbol/// message recieved from client (108.38.32.249, 50775) at : 2016/08/18-21:24:26 : welp server is dead.
-<br>[INFO] ///Pull UserList from Scanner to Server/// message recieved from client (108.38.32.249, 50775) at : 2016/08/18-21:24:26 : rqul
-hmmng
-welp server is dead.
-<br>[WARN] ///Bad parse - No Start-Of-Header symbol/// message recieved from client (108.38.32.249, 50775) at : 2016/08/18-21:24:44 : sigh
-<br>[INFO] ///Pull UserList from Scanner to Server/// message recieved from client (108.38.32.249, 50775) at : 2016/08/18-21:24:44 : rqul
-hmmng
-welp server is dead.
-sigh
-<br>[WARN] Client (108.38.32.249, 50775) has disconnected at : 2016/08/18-21:24:50 : Due to exception in data processing code : [Errno 104] Connection reset by peer<br>
+<button type="button" onclick="loadDoc()">[Request current log data]</button>
+<p id="Log"></p>

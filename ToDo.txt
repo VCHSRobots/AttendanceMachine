@@ -10,8 +10,8 @@ CLIENT:
 [X] - Put un-sent messages into a que
 [X] - Attempt to send reconnect to server every /60/ seconds 
 [X] - Send que to server on connection
-[ ] - Upload an up-to-date userlist and student photos
-[ ] - Add a short demonstration video
+[X] - Upload an up-to-date userlist...
+[ ] - AND upload up-to-date member photos
 [X] - Add seperate logs and log folder for program output, seperate from scan logging
 
 SERVER:
@@ -25,10 +25,11 @@ SERVER:
 [X] - Correct issues with reading header data
 [X] - Correct issues with stringing together multiple packets into a single message
 [ ] - Correct and test timeout for receiving data
-[ ] - Move server and other administrative tools to a sub-domain of epicrobotz.com; "admin.epicrobotz.com"?
 
 UN-NESSICARY CHANGES:
 
+[ ] - Add a short demonstration video
+[ ] - Move server and other administrative tools to a sub-domain of epicrobotz.com; "admin.epicrobotz.com"?
 [ ] - Update code base from Python 2.7.x to Python 3.5.x
 [ ] - Upon program completion, ensure code is PEP-8 compliant
 [ ] - EZ-install package for both client and server - if there is ever a need to migrate to a fresh machine; include all dependances in (tar bin?) install package, including Python
