@@ -1,0 +1,124 @@
+<!---------- CSS ----------->
+
+<style>
+        body
+        {
+                background-color: black;
+        }
+        h1
+        {
+                font-family: monospace;
+                text-align: center;
+                color: red;
+                text-shadow: 50px 50px 5px #f00000;
+        }
+        p1
+        {
+                font-family: monospace;
+                color: gray;
+        }
+        p2
+        {
+                font-family: monospace;
+                color: white;
+        }
+        p3
+        {
+                font-family: monospace;
+                color: green;
+        }
+</style>
+
+<!----------- HTML -------------->
+
+<head>
+    <title>Scanner Logs</title>
+</head>
+<body> 
+<script type='text/javascript' src='www.epicarg.xyz/jquery.js'></script>
+<script>
+window.setInterval(function loadDoc()
+    {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function()
+        {
+            if (xhttp.readyState == 4 && xhttp.status == 200)
+                {
+                    document.getElementById("Log").innerHTML = xhttp.responseText;
+                }
+        };
+        xhttp.open("POST", "outlog.txt", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send();
+    }, 250);
+</script>
+<script>
+function CmdRQLN()
+    {
+        data = new FormData();
+        data.append("data", "rqln")
+        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+        xhr.open( 'post', 'cmd.php', true );
+        xhr.send(data);
+    }
+function CmdRQLA()
+    {
+        data = new FormData();
+        data.append("data", "rqla")
+        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+        xhr.open( 'post', 'cmd.php', true );
+        xhr.send(data);
+    }
+function CmdRQLO()
+    {
+        data = new FormData();
+        data.append("data", "rqlo")
+        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+        xhr.open( 'post', 'cmd.php', true );
+        xhr.send(data);
+    }
+function CmdRQUL()
+    {
+        data = new FormData();
+        data.append("data", "rqul")
+        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+        xhr.open( 'post', 'cmd.php', true );
+        xhr.send(data);
+    }
+function CmdPSUL()
+    {
+        data = new FormData();
+        data.append("data", "psul")
+        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+        xhr.open( 'post', 'cmd.php', true );
+        xhr.send(data);
+    }
+function CmdTGDM()
+    {
+        data = new FormData();
+        data.append("data", "tgdm")
+        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
+        xhr.open( 'post', 'cmd.php', true );
+        xhr.send(data);
+    }
+</script>
+<h1>
+/-----------------------\<br>
+| LIVE SCANNER LOG FEED |<br>
+\-----------------------/<br>
+</h1>
+<p1>
+This page's information should be auto-magically updated every quarter-second!
+<br>
+Only /3/ clients may connect properly at one time. That number is arbatrary.<br>
+<br>
+<p2>
+* <button onclick="CmdRQLN()">RQLN</button>	- Request a copy of the newest scan log<br>
+* <button onclick="CmdRQLA()">RQLA</button> - Request a copy of all scan logs<br>
+* <button onclick="CmdRQLO()">RQLO</button>- Request a copy of the client's outlog<br>
+* <button onclick="CmdRQUL()">RQUL</button>- Request a copy of the client's userlist<br>
+X <button onclick="CmdPSUL()">PSUL</button>- Send the scanner a copy of the webserver's userlist<br>
+* <button onclick="CmdTGDM()">TGDM</button>- Toggle the client's demo video feature<br>
+</p2>
+<br>
+<p3 id="Log"></p3>
