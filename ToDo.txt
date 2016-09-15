@@ -11,13 +11,13 @@ CLIENT:
 [X] - Attempt to send reconnect to server every /60/ seconds 
 [X] - Send que to server on connection
 [X] - Upload an up-to-date userlist...
-[ ] - AND upload up-to-date member photos
+[X] - AND upload up-to-date member photos
 [X] - Add seperate logs and log folder for program output, seperate from scan logging
 
 SERVER:
 
 [X] - Improove exception handling
-[ ] - Allow interfacing between front-end page and back-end server script
+[X] - Allow interfacing between front-end page and back-end server script
 [ ] - Change attendance data processing: JSON format, Hours / Total, Days / Total
 [ ] - Allow for easy changing of processing variables with a front-end UI: Meeting dates and times
 [ ] - Allow for easy changing of the UserList with a front-end UI
@@ -31,7 +31,7 @@ UN-NESSICARY CHANGES:
 [ ] - Add a short demonstration video
 [ ] - Move server and other administrative tools to a sub-domain of epicrobotz.com; "admin.epicrobotz.com"?
 [ ] - Update code base from Python 2.7.x to Python 3.5.x
-[ ] - Upon program completion, ensure code is PEP-8 compliant
+[ ] - Upon program completion, ensure python2 code is PEP-8 compliant
 [ ] - EZ-install package for both client and server - if there is ever a need to migrate to a fresh machine; include all dependances in (tar bin?) install package, including Python
 [ ] - Release code as Open-Source freeware (see above)
-[ ] - Re-format Pi's SD card on a bad scan (Just kidding.)
+[ ] - Format client Pi's SD card on a bad scan (Just kidding.)
