@@ -51,6 +51,7 @@ def BroadcastData(data):
     fdata = "<" + str(length) + ">" + data
     if ConnToServer == True:
         s.send(fdata)
+	print("data sent"+fdata)
     else:
         AddToQue(fdata)
 def AddToQue(data):
@@ -62,7 +63,9 @@ def ConnectToServer():
     global s
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
-        s.connect(("epicarg.xyz", 3265))
+	server="104.236.140.24"
+	port=3265
+        s.connect((server, port))
         ConnToServer = True
         RecordMsg("[INFO] Connected to remote server.")
         if que != []:
@@ -79,7 +82,7 @@ def ConnectToServer():
             RecordMsg("[INFO] All backlog scans sent to server : " + str(len(que)) + " items; " + str(len("".join(que))) + " bits")
             que = []
     except Exception as e:
-        RecordMsg("[FATL] Unable to connect to server : " + str(e))
+        RecordMsg("[FATL] Unable to connect to server" + server +" : " + str(e))
         ConnToServer = False
         RecordMsg("[INFO] Attempting to reconnect to the server in 10 seconds...")
         time.sleep(10)
