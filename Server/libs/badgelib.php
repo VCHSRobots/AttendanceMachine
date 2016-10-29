@@ -1,4 +1,4 @@
-l<?php
+<?php
 // --------------------------------------------------------------------
 // badgelib.php:  library fucntions that deal with making badges.
 //
