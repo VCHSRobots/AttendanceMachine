@@ -16,16 +16,8 @@ create Table Users
    Active boolean
 );
 
-/*insert into Users (UserName, PasswordHash, LastName, FirstName, NickName, Title, BadgeID, Email, Tags, Active)
-    values("dal", "41kULJSKsq756", "Brandon", "Dalbert", "Dal", "Mentor", "B001", "dalbrandon@gmail.com", "Member/Editor/Admin", TRUE);
-insert into Users (Username, PasswordHash, LastName, FirstName, NickName, Title, BadgeID, Email, Tags, Active)
-    values("sarah", "41w0Haer3yB3.", "Shibley", "Sarah", "Sarah", "Mentor", "B015", "sarahshib@hotmail.com", "Mentor/Admin/Member/Editor", TRUE);
-insert into Users (Username, PasswordHash, LastName, FirstName, NickName, Title, BadgeID, Email, Tags, Active)
-    values("brian","41w0Haer3yB3.", "Madrid", "Brian", "Brian", "Mentor", "B013", "bmad@ucla.edu", "Member/Scout/Editor/Admin", TRUE);
-insert into Users (Username, PasswordHash, LastName, FirstName, NickName, Title, BadgeID, Email, Tags, Active)
-    values("nathan", "41w0Haer3yB3.", "Gardner", "Nathan", "Nathan", "Mentor", "B022", "brytstahr@yahoo.com", "Member/Admin/Editor", TRUE);*/
-insert into Users (Username, PasswordHash, LastName, FirstName, NickName, Title, BadgeID, Email, Tags, Active)
-    values("patrick", "41w0Haer3yB3.", "Rose", "Patrick", "Patrick", "", "B041", "", "Member/Admin/Editor", TRUE);
+insert into Users (UserName, PasswordHash, LastName, FirstName, NickName, Title, BadgeID, Email, Tags, Active)
+    values("sshibley", "41w0Haer3yB3.", "Shibley", "Sarah", "Sarah", "Mentor", "C015", "sarahshib@outlook.com", "Mentor/Admin/Member/Editor", TRUE); # Password: loveadmin
     
 create Table Prefs
 (

@@ -1,54 +1,23 @@
 
 <?php
 require_once "libs/all.php";
-/*$y = 0;
-for ($x = 0; $x<=8; $x++) {
-	$y++;
-	if ($y <=8)
-	{
-	$b1 = "B00".$y;
-	$b2 = "B00".$y++;
-	$b3 = "B00".$y++;
-	$b4 = "B00".$y++;
-	$b5 = "B00".$y++;
-	$b6 = "B00".$y++;
-	$b7 = "B00".$y++;
-	$b8 = "B00".$y++;
-	}
-	if($y == 9){
-	$b1 = "B00".$y;
-	$b2 = "B0".$y++;
-	$b3 = "B0".$y++;
-	$b4 = "B0".$y++;
-	$b5 = "B0".$y++;
-	$b6 = "B0".$y++;
-	$b7 = "B0".$y++;
-	$b8 = "B0".$y++;
-}
-	else {
-	$b1 = "B0".$y;
-	$b2 = "B0".$y++;
-	$b3 = "B0".$y++;
-	$b4 = "B0".$y++;
-	$b5 = "B0".$y++;
-	$b6 = "B0".$y++;
-	$b7 = "B0".$y++;
-	$b8 = "B0".$y++;
-}*/
-$testSheet = "Badges_2015-2016_";
-$badgelist=array("B001", "B002", "B003", "B004", "B005", "B006", "B007", "B008");
+$testSheet = "Badges_2016-2017_";
+$badgelist=array("C001", "C002", "C003", "C004", "C005", "C006", "C007", "C008");
 MakePrintSheet($badgelist, $testSheet."1");
-$badgelist=array("B009", "B010", "B011", "B012", "B013", "B014", "B015", "B016");
+$badgelist=array("C009", "C010", "C011", "C012", "C013", "C014", "C017", "C018");
 MakePrintSheet($badgelist, $testSheet."2");
-$badgelist=array("B017", "B018", "B019", "B020", "B021", "B022", "B023", "B024");
+$badgelist=array("C021", "C022", "C023", "C024", "C025", "C026", "C027", "C028");
 MakePrintSheet($badgelist, $testSheet."3");
-$badgelist=array("B025", "B026", "B027", "B028", "B029", "B030", "B031", "B032");
+$badgelist=array("C029", "C030", "C031", "C032", "C033", "C034", "C035", "C036");
 MakePrintSheet($badgelist, $testSheet."4");
-$badgelist=array("B033", "B034", "B035", "B036", "B037", "B038", "B039", "B040");
+$badgelist=array("C033", "C065", "C066", "C067", "C039", "C015", "C039", "C040");
 MakePrintSheet($badgelist, $testSheet."5");
-$badgelist=array("B041", "B042", "B043", "B044", "B045", "B046", "B047", "B048");
+$badgelist=array("C041", "C042", "C043", "C044", "C045", "C046", "C047", "C048");
 MakePrintSheet($badgelist, $testSheet."6");
-$badgelist=array("B049", "B050", "B051", "B052", "B053", "B054", "B055", "B056");
+$badgelist=array("C049", "C050", "C051", "C052", "C053", "C054", "C055", "C056");
 MakePrintSheet($badgelist, $testSheet."7");
-//}
+$badgelist=array("C057", "C058", "C059", "C060", "C061", "C062", "C063", "C064");
+MakePrintSheet($badgelist, $testSheet."8");
+
+echo "finished!"
 ?>

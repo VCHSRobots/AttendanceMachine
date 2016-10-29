@@ -26,6 +26,8 @@
         {
                 font-family: monospace;
                 color: green;
+                white-space: nowrap;
+                font-size: 0.85em;
         }
 </style>
 
@@ -35,7 +37,7 @@
     <title>Scanner Logs</title>
 </head>
 <body> 
-<script type='text/javascript' src='www.epicarg.xyz/jquery.js'></script>
+<script type='text/javascript' src='jquery.js'></script>
 <script>
 window.setInterval(function loadDoc()
     {
@@ -53,53 +55,77 @@ window.setInterval(function loadDoc()
     }, 250);
 </script>
 <script>
-function CmdRQLN()
+function rqln()
     {
-        data = new FormData();
-        data.append("data", "rqln")
-        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
-        xhr.open( 'post', 'cmd.php', true );
-        xhr.send(data);
+        var command = "rqln";
+        $.ajax ({
+            type: "POST",
+            url:"cmd.php",
+            data: {command:command},
+            success: function() {
+                console.log("Message sent!");
+   }
+});
     }
-function CmdRQLA()
+function rqla()
     {
-        data = new FormData();
-        data.append("data", "rqla")
-        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
-        xhr.open( 'post', 'cmd.php', true );
-        xhr.send(data);
+        var command = "rqla";
+        $.ajax ({
+            type: "POST",
+            url:"cmd.php",
+            data: {command:command},
+            success: function() {
+                console.log("Message sent!");
+   }
+});
     }
-function CmdRQLO()
+function rqlo()
     {
-        data = new FormData();
-        data.append("data", "rqlo")
-        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
-        xhr.open( 'post', 'cmd.php', true );
-        xhr.send(data);
+        var command = "rqlo";
+        $.ajax ({
+            type: "POST",
+            url:"cmd.php",
+            data: {command:command},
+            success: function() {
+                console.log("Message sent!");
+   }
+});
     }
-function CmdRQUL()
+function rqul()
     {
-        data = new FormData();
-        data.append("data", "rqul")
-        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
-        xhr.open( 'post', 'cmd.php', true );
-        xhr.send(data);
+        var command = "rqul";
+        $.ajax ({
+            type: "POST",
+            url:"cmd.php",
+            data: {command:command},
+            success: function() {
+                console.log("Message sent!");
+   }
+});
     }
-function CmdPSUL()
+function psul()
     {
-        data = new FormData();
-        data.append("data", "psul")
-        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
-        xhr.open( 'post', 'cmd.php', true );
-        xhr.send(data);
+        var command = "psul";
+        $.ajax ({
+            type: "POST",
+            url:"cmd.php",
+            data: {command:command},
+            success: function() {
+                console.log("Message sent!");
+   }
+});
     }
-function CmdTGDM()
+function tgdm()
     {
-        data = new FormData();
-        data.append("data", "tgdm")
-        var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new activeXObject("Microsoft.XMLHTTP");
-        xhr.open( 'post', 'cmd.php', true );
-        xhr.send(data);
+        var command = "tgdm";
+        $.ajax ({
+            type: "POST",
+            url:"cmd.php",
+            data: {command:command},
+            success: function() {
+                console.log("Message sent!");
+   }
+});
     }
 </script>
 <h1>
@@ -113,12 +139,12 @@ This page's information should be auto-magically updated every quarter-second!
 Only /3/ clients may connect properly at one time. That number is arbatrary.<br>
 <br>
 <p2>
-* <button onclick="CmdRQLN()">RQLN</button>	- Request a copy of the newest scan log<br>
-* <button onclick="CmdRQLA()">RQLA</button> - Request a copy of all scan logs<br>
-* <button onclick="CmdRQLO()">RQLO</button>- Request a copy of the client's outlog<br>
-* <button onclick="CmdRQUL()">RQUL</button>- Request a copy of the client's userlist<br>
-X <button onclick="CmdPSUL()">PSUL</button>- Send the scanner a copy of the webserver's userlist<br>
-* <button onclick="CmdTGDM()">TGDM</button>- Toggle the client's demo video feature<br>
+* <button onclick="rqln()">RQLN</button>	- Request a copy of the newest scan log<br>
+* <button onclick="rqla()">RQLA</button> - Request a copy of all scan logs<br>
+* <button onclick="rqlo()">RQLO</button>- Request a copy of the client's outlog<br>
+* <button onclick="rqul()">RQUL</button>- Request a copy of the client's userlist<br>
+X <button onclick="psul()">PSUL</button>- Send the scanner a copy of the webserver's userlist<br>
+* <button onclick="tgdm()">TGDM</button>- Toggle the client's demo video feature<br>
 </p2>
 <br>
 <p3 id="Log"></p3>

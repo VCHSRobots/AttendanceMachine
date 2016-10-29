@@ -1,7 +1,13 @@
 <?php
-$cmdfile = 'cmd';
-$data = $_POST['data'];
-$f = fopen(cmdfile, "w");
-fwrite($f, $data);
-fclose($f);
+if (isset($_POST["command"]))
+{
+    $data = $_POST["command"];
+    $f = fopen("cmd.txt", "a+");
+    fwrite($f, $data . "\n");
+    fclose($f);
+}
+else
+{
+    $data = "";
+}
 ?>

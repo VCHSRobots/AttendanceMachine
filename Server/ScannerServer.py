@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Compiled with Python version 2.7.9
+# -*- coding: utf-8 -*- Compiled with Python version 2.7.9
 #
 # Running in background on Attendance Machine using command:
 # nohup python scanner.py  &
@@ -41,7 +40,7 @@ if __name__ == "__main__":
 	cmd = "null"
 	class CheckCmdThread(threading.Thread):
 		def __init__(self):
-			super(Worker, self).__init__()
+			super(CheckCmdThread, self).__init__()
 		def run(self):
 			while True:
 				CurrentTime = time.strftime("%Y/%m/%d-%H:%M:%S")
@@ -77,36 +76,36 @@ if __name__ == "__main__":
 							log("[INFO] ///TGDM/// Command recieved at : " + CurrentTime + "<br>")
 							return
 						else:
-						print("[FATL] Error reading file cmd.txt at : " + CurrentTime + "<br>")
-								   return
+							print("[FATL] Error reading file cmd.txt at : " + CurrentTime + "<br>")
+							return
 	log("[INFO] Attendance Server initiated on port " + str(PORT) + " at : " + time.strftime("%Y/%m/%d-%H:%M:%S") + "<br>")
-		def DataTimeout():
-			timeout = False
-			#log("Timeout: Timer Started!")
-			#time.sleep(6)
-			#timeout = True
-			#log("Timeout: Time's Up!")
+	def DataTimeout():
+		timeout = False
+		#log("Timeout: Timer Started!")
+		#time.sleep(6)
+		#timeout = True
+		#log("Timeout: Time's Up!")
 	class CommManThread(threading.Thread):
+		def __init__(self):
+			super(CheckCmdThread, self).__init__()
 		def run(self):
 			message = ""
 			EOH = False
 			timeout = False
 			RecvLength = 0
 			MessageLength = 0
-				while True:
-					CurrentTime = time.strftime("%Y/%m/%d-%H:%M:%S")
-					read_sockets, write_sockets, error_sockets = select.select(CONNECTION_LIST,[],[])
-					for sock in read_sockets:
-						if sock == server_socket:
-							sockfd, addr = server_socket.accept()
-							CONNECTION_LIST.append(sockfd)
-							log("[INFO] Client (%s, %s) has connected" % addr + " at : " + CurrentTime  + "<br>")
-						else:
-							try:
-		  						data = sock.recv(RECV_BUFFER)
-						if data != "":
-							TimeoutThread = threading.Thread(target = DataTimeout)
-							TimeoutThread.start()
+			while True:
+				CurrentTime = time.strftime("%Y/%m/%d-%H:%M:%S")
+				read_sockets, write_sockets, error_sockets = select.select(CONNECTION_LIST,[],[])
+				for sock in read_sockets:
+					if sock == server_socket:
+						sockfd, addr = server_socket.accept()
+						CONNECTION_LIST.append(sockfd)
+						log("[INFO] Client (%s, %s) has connected" % addr + " at : " + CurrentTime  + "<br>")
+					else:
+						try:
+		  					data = sock.recv(RECV_BUFFER)
+							if data != "":
 								try:
 									if EOH == False:
 										if data[0] == "<":
@@ -145,18 +144,20 @@ if __name__ == "__main__":
 													else:
 														log("[WARN] ///Bad parse - General error parsing data/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
 											else:
-													log("[WARN] Client (%s, %s) failed to complete sending a " + str(MessageLength) + " bit message within the timeout time of 6 seconds " % addr + " at : " + CurrentTime + "<br>") 
+												log("[WARN] Client (%s, %s) failed to complete sending a " + str(MessageLength) + " bit message within the timeout time of 6 seconds " % addr + " at : " + CurrentTime + "<br>")
 								except Exception as e:
-									log("[WARN] Error encountered  at : " + CurrentTime + " : Due to exception in data processing code : " + str(e) + "<br>")
+									log("[WARN] Error encountered at : " + CurrentTime + " : Due to exception in data processing code : " + str(e) + "<br>")
 									continue
-						else:
-							log("[INFO] Client (%s, %s) has disconnected" % addr + " at : " + CurrentTime + "<br>")
-							sock.close()
-							CONNECTION_LIST.remove(sock)
+							else:
+								log("[INFO] Client (%s, %s) has disconnected" % addr + " at : " + CurrentTime + "<br>")
+								sock.close()
+								CONNECTION_LIST.remove(sock)
+								continue
+						except Exception as e:
+							log("[FATL] Error receiving data at : " + CurrentTime + "<br>")
 							continue
 			server_socket.close()
 			log("[INFO] Attendance Server shutting down NOW, at : " + time.strftime("%Y/%m/%d-%H:%M:%S"))
-	# Create new threads
 	T1 = CheckCmdThread()
 	T2 = CommManThread()
 	# Start new Threads

@@ -1,0 +1,226 @@
+abc
+hello!json!{"logtime": "2016/10/04 00:30:10", "badgeid": "B038", "side": "front", "flags": "okay", "lastname": "Rabideaux", "firstname": "Grant"}json+={"logtime": "2016/10/04 00:30:10", "badgeid": "B038", "side": "front", "flags": "okay", "lastname": "Rabideaux", "firstname": "Grant"}
+time:2016/10/04 00:30:10
+badgeidB038
+dir:front
+flag:okay
+firstName:Grant
+lastname:Rabideaux
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/04 17:40:30", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}json+={"logtime": "2016/10/04 17:40:30", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}
+time:2016/10/04 17:40:30
+badgeidC008
+dir:front
+flag:okay
+firstName:Rob
+lastname:Dominik
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/04 17:41:34", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}json+={"logtime": "2016/10/04 17:41:34", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}
+time:2016/10/04 17:41:34
+badgeidC008
+dir:front
+flag:okay
+firstName:Rob
+lastname:Dominik
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/06 17:44:50", "badgeid": "C006", "side": "front", "flags": "okay", "lastname": "Dominguez", "firstname": "Kyle"}json+={"logtime": "2016/10/06 17:44:50", "badgeid": "C006", "side": "front", "flags": "okay", "lastname": "Dominguez", "firstname": "Kyle"}
+time:2016/10/06 17:44:50
+badgeidC006
+dir:front
+flag:okay
+firstName:Kyle
+lastname:Dominguez
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/06 17:48:44", "badgeid": "C005", "side": "front", "flags": "okay", "lastname": "DeVries", "firstname": "Paul"}json+={"logtime": "2016/10/06 17:48:44", "badgeid": "C005", "side": "front", "flags": "okay", "lastname": "DeVries", "firstname": "Paul"}
+time:2016/10/06 17:48:44
+badgeidC005
+dir:front
+flag:okay
+firstName:Paul
+lastname:DeVries
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/06 18:05:42", "badgeid": "C005", "side": "front", "flags": "okay", "lastname": "DeVries", "firstname": "Paul"}json+={"logtime": "2016/10/06 18:05:42", "badgeid": "C005", "side": "front", "flags": "okay", "lastname": "DeVries", "firstname": "Paul"}
+time:2016/10/06 18:05:42
+badgeidC005
+dir:front
+flag:okay
+firstName:Paul
+lastname:DeVries
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/06 18:08:58", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}json+={"logtime": "2016/10/06 18:08:58", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}
+time:2016/10/06 18:08:58
+badgeidC008
+dir:front
+flag:okay
+firstName:Rob
+lastname:Dominik
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/06 18:10:59", "badgeid": "C005", "side": "front", "flags": "okay", "lastname": "DeVries", "firstname": "Paul"}json+={"logtime": "2016/10/06 18:10:59", "badgeid": "C005", "side": "front", "flags": "okay", "lastname": "DeVries", "firstname": "Paul"}
+time:2016/10/06 18:10:59
+badgeidC005
+dir:front
+flag:okay
+firstName:Paul
+lastname:DeVries
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/06 18:21:29", "badgeid": "C005", "side": "front", "flags": "okay", "lastname": "DeVries", "firstname": "Paul"}json+={"logtime": "2016/10/06 18:21:29", "badgeid": "C005", "side": "front", "flags": "okay", "lastname": "DeVries", "firstname": "Paul"}
+time:2016/10/06 18:21:29
+badgeidC005
+dir:front
+flag:okay
+firstName:Paul
+lastname:DeVries
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/06 18:25:41", "badgeid": "C006", "side": "front", "flags": "okay", "lastname": "Dominguez", "firstname": "Kyle"}json+={"logtime": "2016/10/06 18:25:41", "badgeid": "C006", "side": "front", "flags": "okay", "lastname": "Dominguez", "firstname": "Kyle"}
+time:2016/10/06 18:25:41
+badgeidC006
+dir:front
+flag:okay
+firstName:Kyle
+lastname:Dominguez
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/06 18:27:32", "badgeid": "C006", "side": "front", "flags": "okay", "lastname": "Dominguez", "firstname": "Kyle"}json+={"logtime": "2016/10/06 18:27:32", "badgeid": "C006", "side": "front", "flags": "okay", "lastname": "Dominguez", "firstname": "Kyle"}
+time:2016/10/06 18:27:32
+badgeidC006
+dir:front
+flag:okay
+firstName:Kyle
+lastname:Dominguez
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/06 18:47:42", "badgeid": "C006", "side": "front", "flags": "okay", "lastname": "Dominguez", "firstname": "Kyle"}json+={"logtime": "2016/10/06 18:47:42", "badgeid": "C006", "side": "front", "flags": "okay", "lastname": "Dominguez", "firstname": "Kyle"}
+time:2016/10/06 18:47:42
+badgeidC006
+dir:front
+flag:okay
+firstName:Kyle
+lastname:Dominguez
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/09 21:11:48", "badgeid": "C006", "side": "front", "flags": "okay", "lastname": "Dominguez", "firstname": "Kyle"}json+={"logtime": "2016/10/09 21:11:48", "badgeid": "C006", "side": "front", "flags": "okay", "lastname": "Dominguez", "firstname": "Kyle"}
+time:2016/10/09 21:11:48
+badgeidC006
+dir:front
+flag:okay
+firstName:Kyle
+lastname:Dominguez
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/09 21:16:54", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}json+={"logtime": "2016/10/09 21:16:54", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}
+time:2016/10/09 21:16:54
+badgeidC008
+dir:front
+flag:okay
+firstName:Rob
+lastname:Dominik
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/09 21:24:48", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}json+={"logtime": "2016/10/09 21:24:48", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}
+time:2016/10/09 21:24:48
+badgeidC008
+dir:front
+flag:okay
+firstName:Rob
+lastname:Dominik
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/09 21:30:54", "badgeid": "C005", "side": "front", "flags": "okay", "lastname": "DeVries", "firstname": "Paul"}json+={"logtime": "2016/10/09 21:30:54", "badgeid": "C005", "side": "front", "flags": "okay", "lastname": "DeVries", "firstname": "Paul"}
+time:2016/10/09 21:30:54
+badgeidC005
+dir:front
+flag:okay
+firstName:Paul
+lastname:DeVries
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/09 21:34:47", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}json+={"logtime": "2016/10/09 21:34:47", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}
+time:2016/10/09 21:34:47
+badgeidC008
+dir:front
+flag:okay
+firstName:Rob
+lastname:Dominik
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/09 21:45:57", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}json+={"logtime": "2016/10/09 21:45:57", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}
+time:2016/10/09 21:45:57
+badgeidC008
+dir:front
+flag:okay
+firstName:Rob
+lastname:Dominik
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/09 21:59:22", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}json+={"logtime": "2016/10/09 21:59:22", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}
+time:2016/10/09 21:59:22
+badgeidC008
+dir:front
+flag:okay
+firstName:Rob
+lastname:Dominik
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/09 22:14:00", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}json+={"logtime": "2016/10/09 22:14:00", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}
+time:2016/10/09 22:14:00
+badgeidC008
+dir:front
+flag:okay
+firstName:Rob
+lastname:Dominik
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/09 22:14:25", "badgeid": "C004", "side": "front", "flags": "okay", "lastname": "DeVries", "firstname": "Ginger"}json+={"logtime": "2016/10/09 22:14:25", "badgeid": "C004", "side": "front", "flags": "okay", "lastname": "DeVries", "firstname": "Ginger"}
+time:2016/10/09 22:14:25
+badgeidC004
+dir:front
+flag:okay
+firstName:Ginger
+lastname:DeVries
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/09 22:15:06", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}json+={"logtime": "2016/10/09 22:15:06", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}
+time:2016/10/09 22:15:06
+badgeidC008
+dir:front
+flag:okay
+firstName:Rob
+lastname:Dominik
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/09 22:15:52", "badgeid": "C001", "side": "front", "flags": "okay", "lastname": "Brandon", "firstname": "Dalbert"}json+={"logtime": "2016/10/09 22:15:52", "badgeid": "C001", "side": "front", "flags": "okay", "lastname": "Brandon", "firstname": "Dalbert"}
+time:2016/10/09 22:15:52
+badgeidC001
+dir:front
+flag:okay
+firstName:Dalbert
+lastname:Brandon
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/09 22:18:22", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}json+={"logtime": "2016/10/09 22:18:22", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}
+time:2016/10/09 22:18:22
+badgeidC008
+dir:front
+flag:okay
+firstName:Rob
+lastname:Dominik
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/09 22:20:25", "badgeid": "C007", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Dan"}json+={"logtime": "2016/10/09 22:20:25", "badgeid": "C007", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Dan"}
+time:2016/10/09 22:20:25
+badgeidC007
+dir:front
+flag:okay
+firstName:Dan
+lastname:Dominik
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/09 22:32:42", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}json+={"logtime": "2016/10/09 22:32:42", "badgeid": "C008", "side": "front", "flags": "okay", "lastname": "Dominik", "firstname": "Rob"}
+time:2016/10/09 22:32:42
+badgeidC008
+dir:front
+flag:okay
+firstName:Rob
+lastname:Dominik
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/09 22:33:45", "badgeid": "C004", "side": "front", "flags": "okay", "lastname": "DeVries", "firstname": "Ginger"}json+={"logtime": "2016/10/09 22:33:45", "badgeid": "C004", "side": "front", "flags": "okay", "lastname": "DeVries", "firstname": "Ginger"}
+time:2016/10/09 22:33:45
+badgeidC004
+dir:front
+flag:okay
+firstName:Ginger
+lastname:DeVries
+method:log
+readerid:B17nadded:1nupdated:0hello!json!{"logtime": "2016/10/09 22:35:55", "badgeid": "C004", "side": "front", "flags": "okay", "lastname": "DeVries", "firstname": "Ginger"}json+={"logtime": "2016/10/09 22:35:55", "badgeid": "C004", "side": "front", "flags": "okay", "lastname": "DeVries", "firstname": "Ginger"}
+time:2016/10/09 22:35:55
+badgeidC004
+dir:front
+flag:okay
+firstName:Ginger
+lastname:DeVries
+method:log
+readerid:B17nadded:1nupdated:0
