@@ -1,1 +1,0 @@
-[INFO] Attendance Server initiated on port 3265 at : 2016/10/29-16:43:10<br>
