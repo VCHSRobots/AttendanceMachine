@@ -38,6 +38,7 @@ def log(msg):
 	with open("outlog.txt", "a") as file:
 		file.write(msg + "\n")
 log("[INFO] Attendance Server initiated on port " + str(PORT) + " at : " + time.strftime("%Y/%m/%d-%H:%M:%S") + "<br>")
+log("[INFO] CommMan script started.")
 def DataTimeout():
 	timeout = False
 	#log("Timeout: Timer Started!")
