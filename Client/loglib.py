@@ -36,12 +36,12 @@ def LogFileName() :
     return name
 
 # --------------------------------------------------------------------
-# Records a scan (JSON)
-def RecordScanJSON(parsed_json) :
+# Records a scan (NOT JSON)
+def RecordScan(parsed_scan) :
     filename = LogFileName()
     file = open(filename, "a")
     tm = GetLogTime()
-    file.write(parsed_json)
+    file.write(parsed_scan
     file.close()	
 
 # ---------------------------------------------------------------------

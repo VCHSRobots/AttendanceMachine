@@ -15,9 +15,9 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #------------------------
 def PushScanToServer(badgeid, side, flags, lastname, firstname): 
     tm = GetLogTime()
-    json_string = '{"logtime": "' + tm + '", "badgeid": "' + badgeid + '", "side": "' + side + '", "flags": "' + flags + '", "lastname": "' + lastname + '", "firstname": "' + firstname +'"}'
-    RecordScanJSON(json_string + "\r\n")
-    data = "SCAN:" + json_string
+    string = '= ' + logtime + ', ' + tm + ', ' + badgeid + ', ' + side + ', ' + flags + ', ' + lastname + ', ' + firstname
+    RecordScan(json_string + "\r\n")
+    data = "SCAN:" + string
     BroadcastData(data)
     return
 def PushNewestLogToServer():
