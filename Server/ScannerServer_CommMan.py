@@ -84,41 +84,42 @@ def CommMan():
 											EOH = True
 								else:
 									log("[WARN] ///Bad parse - No Start-Of-Header symbol/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + data + "<br>")
-									message += data
-									RecvLength += len(data)
-									if timeout == False:
-										if RecvLength == MessageLength:
-											message = message.split('>', 1)[-1]
-											RecvLength = 0
-											MessageLength = 0
-											EOH = False
-											if message[:5] == "SCAN:":
-												log("[INFO] ///Scan/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
-												FileName = "ScanLog_" + CurrentTime + ".txt"
-												with open(Filename, "a") as file:
-													file.write(message)
-												p = subprocess.Popen("php /var/www/html/ScannerServer_ProcessScans.php Filename", shell=True, stdout=subprocess.PIPE)
-												log("[INFO] Recv'd scan data logged to file and processed.")
-												broadcast_data(sock, "!")
-											elif message[:5] == "LOGN:":
-												log("[INFO] ///Newest Scan Log/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
-												FileName = "ScanLog_" + CurrentTime + ".txt"
-												with open(Filename, "a") as file:
-													file.write(message)
-												p = subprocess.Popen("php /var/www/html/ScannerServer_ProcessScans.php Filename", shell=True, stdout=subprocess.PIPE)
-												log("[INFO] Recv'd scan data logged to file and processed.")
-												broadcast_data(sock, "!")
-											elif message[:5] == "LOGA:":
-												log("[INFO] ///All Scan Logs/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
-
-											elif message[:5] == "LOGO:":
-												log("[INFO] ///Out Log/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
-											elif message[:5] == "USRL:":
-												log("[INFO] ///User List/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
-											else:
-												log("[WARN] ///Bad parse - General error parsing data/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
-									else:
-										log("[WARN] Client (%s, %s) failed to complete sending a " + str(MessageLength) + " bit message within the timeout time of 6 seconds " % addr + " at : " + CurrentTime + "<br>")
+							else:
+								message += data
+								RecvLength += len(data)
+								if timeout == False:
+									if RecvLength == MessageLength:
+										message = message.split('>', 1)[-1]
+										RecvLength = 0
+										MessageLength = 0
+										EOH = False
+										if message[:5] == "SCAN:":
+											log("[INFO] ///Scan/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
+											FileName = "ScanLog_" + CurrentTime + ".txt"
+											with open(Filename, "a") as file:
+												file.write(message)
+											p = subprocess.Popen("php /var/www/html/ScannerServer_ProcessScans.php Filename", shell=True, stdout=subprocess.PIPE)
+											log("[INFO] Recv'd scan data logged to file and processed.")
+											broadcast_data(sock, "!")
+										elif message[:5] == "LOGN:":
+											log("[INFO] ///Newest Scan Log/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
+											FileName = "ScanLog_" + CurrentTime + ".txt"
+											with open(Filename, "a") as file:
+												file.write(message)
+											p = subprocess.Popen("php /var/www/html/ScannerServer_ProcessScans.php Filename", shell=True, stdout=subprocess.PIPE)
+											log("[INFO] Recv'd scan data logged to file and processed.")
+											broadcast_data(sock, "!")
+										elif message[:5] == "LOGA:":
+											log("[INFO] ///All Scan Logs/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
+	
+										elif message[:5] == "LOGO:":
+											log("[INFO] ///Out Log/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
+										elif message[:5] == "USRL:":
+											log("[INFO] ///User List/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
+										else:
+											log("[WARN] ///Bad parse - General error parsing data/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
+								else:
+									log("[WARN] Client (%s, %s) failed to complete sending a " + str(MessageLength) + " bit message within the timeout time of 6 seconds " % addr + " at : " + CurrentTime + "<br>")
 						except Exception as e:
 							log("[WARN] Error encountered at : " + CurrentTime + " : Due to exception in data processing code : " + str(e) + "<br>")
 							continue
