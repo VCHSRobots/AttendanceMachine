@@ -16,7 +16,7 @@ server_socket.bind(("0.0.0.0", PORT))
 server_socket.listen(3)
 CONNECTION_LIST.append(server_socket)
 with open ("ConList.txt", "wb") as file:
-	for item in CONNNECTION_LIST:
+	for item in CONNECTION_LIST:
 		file.write(item)
 def broadcast_data(sock, message):
 	if message == "!":
@@ -35,7 +35,7 @@ def broadcast_data(sock, message):
 					socket.close()
 					CONNECTION_LIST.remove(socket)
 					with open ("ConList.txt", "wb") as file:
-						for item in CONNNECTION_LIST:
+						for item in CONNECTION_LIST:
 							file.write(item)
 def log(msg):
 	print(msg)
@@ -62,7 +62,7 @@ def CommMan():
 				sockfd, addr = server_socket.accept()
 				CONNECTION_LIST.append(sockfd)
 				with open ("ConList.txt", "wb") as file:
-					for item in CONNNECTION_LIST:
+					for item in CONNECTION_LIST:
 						file.write(item)
 				log("[INFO] Client (%s, %s) has connected" % addr + " at : " + CurrentTime  + "<br>")
 			else:
@@ -128,7 +128,7 @@ def CommMan():
 						sock.close()
 						CONNECTION_LIST.remove(sock)
 						with open ("ConList.txt", "wb") as file:
-							for item in CONNNECTION_LIST:
+							for item in CONNECTION_LIST:
 								file.write(item)
 						continue
 				except Exception as e:
@@ -136,7 +136,7 @@ def CommMan():
 					sock.close()
 					CONNECTION_LIST.remove(sock)
 					with open ("ConList.txt", "wb") as file:
-						for item in CONNNECTION_LIST:
+						for item in CONNECTION_LIST:
 							file.write(item)
 					continue
 CommMan()
