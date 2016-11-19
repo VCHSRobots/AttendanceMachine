@@ -18,7 +18,6 @@ SERVER:
 
 [X] - Improove exception handling
 [X] - Allow interfacing between front-end page and back-end server script
-[ ] - Change attendance data processing: JSON format, Hours / Total, Days / Total
 [ ] - Allow for easy changing of processing variables with a front-end UI: Meeting dates and times
 [ ] - Allow for easy changing of the UserList with a front-end UI
 [ ] - Allow for managing multiple scanner clients: Commands, pulling, pushing, diagnostics (uptime, packets dropped), etcetera. Give each scanner a UUID, perhaps?

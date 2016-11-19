@@ -1,0 +1,2 @@
+//This file will store any of the client's outlogs which are pulled the server. Manually reading them from the client itself is just too hard!
+//This feature is NOT YET implemented.

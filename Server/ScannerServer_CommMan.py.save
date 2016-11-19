@@ -2,7 +2,6 @@
 
 import socket, time, select, requests, pickle, subprocess
 from multiprocessing import Process
-
 ####################
 # Main Server Code #
 ####################
@@ -16,8 +15,7 @@ server_socket.bind(("0.0.0.0", PORT))
 server_socket.listen(3)
 CONNECTION_LIST.append(server_socket)
 with open ("ConList.txt", "wb") as file:
-	for item in CONNNECTION_LIST:
-		file.write(item)
+	pickle.dump(CONNECTION_LIST, file, -1)
 def broadcast_data(sock, message):
 	if message == "!":
 		return
@@ -35,8 +33,7 @@ def broadcast_data(sock, message):
 					socket.close()
 					CONNECTION_LIST.remove(socket)
 					with open ("ConList.txt", "wb") as file:
-						for item in CONNNECTION_LIST:
-							file.write(item)
+						pickle.dump(CONNECTION_LIST, file, -1)
 def log(msg):
 	print(msg)
 	with open("outlog.txt", "a") as file:
@@ -62,8 +59,7 @@ def CommMan():
 				sockfd, addr = server_socket.accept()
 				CONNECTION_LIST.append(sockfd)
 				with open ("ConList.txt", "wb") as file:
-					for item in CONNNECTION_LIST:
-						file.write(item)
+					pickle.dump(CONNECTION_LIST, file, -1)
 				log("[INFO] Client (%s, %s) has connected" % addr + " at : " + CurrentTime  + "<br>")
 			else:
 				try:
@@ -110,9 +106,15 @@ def CommMan():
 												broadcast_data(sock, "!")
 											elif message[:5] == "LOGA:":
 												log("[INFO] ///All Scan Logs/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
-
+												FileName = "ScanLog_" + CurrentTime + ".txt"
+												with open(Filename, "a") as file:
+													file.write(message)
+												p = subprocess.Popen("php /var/www/html/ScannerServer_ProcessScans.php Filename", shell=True, stdout=subprocess.PIPE)
+												log("[INFO] Recv'd scan data logged to file and processed.")
+												broadcast_data(sock, "!")
 											elif message[:5] == "LOGO:":
 												log("[INFO] ///Out Log/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
+												
 											elif message[:5] == "USRL:":
 												log("[INFO] ///User List/// message recieved from client (%s, %s) at : " % addr + CurrentTime + " : " + message + "<br>")
 											else:
@@ -127,15 +129,13 @@ def CommMan():
 						sock.close()
 						CONNECTION_LIST.remove(sock)
 						with open ("ConList.txt", "wb") as file:
-							for item in CONNNECTION_LIST:
-								file.write(item)
+							pickle.dump(CONNECTION_LIST, file, -1)
 						continue
 				except Exception as e:
 					log("[FATL] Error receiving data at : " + CurrentTime + " : " + str(e) + "<br>")
 					sock.close()
 					CONNECTION_LIST.remove(sock)
 					with open ("ConList.txt", "wb") as file:
-						for item in CONNNECTION_LIST:
-							file.write(item)
+						pickle.dump(CONNECTION_LIST, file, -1)
 					continue
 CommMan()

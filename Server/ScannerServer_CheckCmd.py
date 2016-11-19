@@ -26,7 +26,6 @@ def log(msg):
 	with open("outlog.txt", "a") as file:
 		file.write(msg + "\n")
 cmd = "null"
-log("[INFO] CheckCmd script started.")
 def CheckCmd():
 	while True:
 		CurrentTime = time.strftime("%Y/%m/%d-%H:%M:%S")
