@@ -41,7 +41,7 @@ def RecordScan(parsed_scan) :
     filename = LogFileName()
     file = open(filename, "a")
     tm = GetLogTime()
-    file.write(parsed_scan
+    file.write(parsed_scan)
     file.close()	
 
 # ---------------------------------------------------------------------

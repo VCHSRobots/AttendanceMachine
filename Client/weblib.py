@@ -15,8 +15,8 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #------------------------
 def PushScanToServer(badgeid, side, flags, lastname, firstname): 
     tm = GetLogTime()
-    string = '= ' + logtime + ', ' + tm + ', ' + badgeid + ', ' + side + ', ' + flags + ', ' + lastname + ', ' + firstname
-    RecordScan(json_string + "\r\n")
+    string = '= ' + tm + ', ' + badgeid + ', ' + side + ', ' + flags + ', ' + lastname + ', ' + firstname
+    RecordScan(string + "\r\n")
     data = "SCAN:" + string
     BroadcastData(data)
     return
