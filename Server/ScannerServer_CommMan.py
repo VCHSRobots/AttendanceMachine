@@ -17,7 +17,7 @@ server_socket.listen(3)
 CONNECTION_LIST.append(server_socket)
 with open ("ConList.txt", "wb") as file:
 	for item in CONNECTION_LIST:
-		file.write(item)
+		file.write(str(item))
 def broadcast_data(sock, message):
 	if message == "!":
 		return
@@ -36,7 +36,7 @@ def broadcast_data(sock, message):
 					CONNECTION_LIST.remove(socket)
 					with open ("ConList.txt", "wb") as file:
 						for item in CONNECTION_LIST:
-							file.write(item)
+							file.write(str(item))
 def log(msg):
 	print(msg)
 	with open("outlog.txt", "a") as file:
@@ -63,7 +63,7 @@ def CommMan():
 				CONNECTION_LIST.append(sockfd)
 				with open ("ConList.txt", "wb") as file:
 					for item in CONNECTION_LIST:
-						file.write(item)
+						file.write(str(item))
 				log("[INFO] Client (%s, %s) has connected" % addr + " at : " + CurrentTime  + "<br>")
 			else:
 				try:
@@ -129,7 +129,7 @@ def CommMan():
 						CONNECTION_LIST.remove(sock)
 						with open ("ConList.txt", "wb") as file:
 							for item in CONNECTION_LIST:
-								file.write(item)
+								file.write(str(item))
 						continue
 				except Exception as e:
 					log("[FATL] Error receiving data at : " + CurrentTime + " : " + str(e) + "<br>")
@@ -137,6 +137,6 @@ def CommMan():
 					CONNECTION_LIST.remove(sock)
 					with open ("ConList.txt", "wb") as file:
 						for item in CONNECTION_LIST:
-							file.write(item)
+							file.write(str(item))
 					continue
 CommMan()
